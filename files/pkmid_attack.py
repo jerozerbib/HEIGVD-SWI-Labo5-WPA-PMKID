@@ -33,12 +33,11 @@ for packet in wpa:
     except:
         pass
 
-print(packet.addr2)
-ap_mac = a2b_hex(str.replace(packet.addr2, ":", ""))
-print(ap_mac)
-client_mac = a2b_hex(str.replace(packet.addr1, ":", ""))
-pmkid = hexlify(packet_bssid.load[-32:])
-data = bytes(A, "utf8") + ap_mac + client_mac
+pmkid = hexlify(handshake.load)[-32:]
+ap_mac = a2b_hex(str.replace(handshake.addr2, ":", ""))
+client_mac = a2b_hex(str.replace(handshake.addr1, ":", ""))
+
+data = A.encode() + ap_mac + client_mac
 
 
 found = False
@@ -46,9 +45,7 @@ found = False
 with open(filename) as dictionary:
     for passPhrase in dictionary:
         # calculate 4096 rounds to obtain the 256 bit (32 oct) PMK
-        passPhrase = str.encode(passPhrase[:-1])
-
-        print(passPhrase)
+        passPhrase = str.encode(passPhrase)[:-1]
 
         pmk = pbkdf2(hashlib.sha1, passPhrase, ssid, 4096, 32)
 
