@@ -63,6 +63,7 @@ Un fork du repo original . Puis, un Pull Request contenant **vos noms** et :
    - Capture d’écran de votre script en action
     ![ex2](./assets/ex2.png)
 - Captures d'écran de votre exercice 3
+   - Voir le fichier [ex3](files/Ex3.md)
 -	Envoyer le hash du commit et votre username GitHub et **les noms des participants** par email au professeur et à l'assistant
 
 
